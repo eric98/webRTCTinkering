@@ -5,9 +5,10 @@
     <title>Example 2</title>
 </head>
 <body>
-<video autoplay></video>
-<img src="">
+<video autoplay id="screenshot-video"></video>
+<img src="" id="screenshot-img">
 <canvas style="display:none;"></canvas>
+<button id="screenshot-button">Screenshoot</button>
 
 <script>
   const button = document.querySelector('#screenshot-button');
@@ -27,6 +28,14 @@
   function handleSuccess(stream) {
     video.srcObject = stream;
   }
+
+  function handleError(error) {
+    console.error('Reeeejected!', error);
+  }
+
+  const constraints = {
+    video: true
+  };
 
   navigator.mediaDevices.getUserMedia(constraints).
   then(handleSuccess).catch(handleError);
